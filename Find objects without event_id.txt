@@ -1,0 +1,3 @@
+SELECT * FROM `object` WHERE id NOT IN 
+(SELECT id FROM `object` WHERE (`type` = 'decoration' OR `type` = 'stock') AND sell_cost IS NOT NULL) 
+AND version_id = 485 AND `type` != 'pet_house' AND `type`!='character_unlock' AND event_id IS NULL

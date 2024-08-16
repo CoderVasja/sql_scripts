@@ -1,0 +1,22 @@
+SELECT 
+    t.message_id, 
+    m.alias, 
+    l.native_name  
+FROM 
+    translation t
+INNER JOIN 
+    message m ON t.message_id = m.id 
+INNER JOIN 
+    language l ON t.language_id = l.id 
+WHERE 
+    t.text = '' 
+    AND m.version_id = 611
+    AND t.language_id IN (1, 2, 3, 4, 6, 7, 8)
+    AND NOT EXISTS (
+        SELECT 1 
+        FROM translation t2 
+        WHERE 
+            t2.message_id = t.message_id 
+            AND t2.language_id = 5 
+            AND t2.text = ''
+    );
